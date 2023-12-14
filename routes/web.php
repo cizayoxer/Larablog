@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\UserController;
@@ -30,9 +31,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/articles/{article}/edit', [UserController::class, 'edit'])->name('articles.edit');
     Route::post('/articles/{article}/update', [UserController::class, 'update'])->name('articles.update');
     Route::get('/articles/{article}/delete', [UserController::class, 'delete'])->name('articles.delete');
-    Route::get('/{user}', [PublicController::class, 'index'])->name('public.index');
-    Route::get('/{user}/{article}', [PublicController::class, 'show'])->name('public.show');
+    Route::get('/comment/{article}', [CommentController::class, 'post'])->name('comments.store');
+
 });
 
+Route::get('/{user}', [PublicController::class, 'index'])->name('public.index');
+Route::get('/{user}/{article}', [PublicController::class, 'show'])->name('public.show');
 
 require __DIR__.'/auth.php';
