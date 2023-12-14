@@ -25,10 +25,10 @@
                             <h2 class="text-2xl font-bold">{{ $article->title }}</h2>
                             <p class="text-gray-700 ">{{ substr($article->content, 0, 30) }}...</p>
                             <div class="text-right">
-                                <a href="{{ route('articles.edit', $article->id) }}" class="text-red-500 hover:text-red-700">🖊️</a>
+                                <a href="{{ route('articles.edit', $article->id) }}" class="text-red-500 hover:text-red-700">🔨️</a>
                             </div>
                             <div class="text-right">
-                                <a href="{{ route('articles.delete', $article->id) }}" class="text-red-500 hover:text-red-700">🗑️</a>
+                                <a href="{{ route('articles.delete', $article->id) }}" class="text-red-500 hover:text-red-700">🚮️</a>
                             </div>
                         </div>
 
