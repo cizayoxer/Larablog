@@ -18,6 +18,16 @@
                     <!-- Contenu de l'article -->
                     <textarea rows="30" name="content" id="content" placeholder="Contenu de l'article" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ $article->content }}</textarea>
                 </div>
+                <div class="ml-6">
+                    <label class="block font-bold mb-2">Catégories :</label>
+
+                    @foreach($categories as $categorie)
+                        <div class="flex items-center mb-2">
+                            <input type="checkbox" name="categories[]" class="form-checkbox text-indigo-600 sm:rounded-lg" value="{{$categorie->id}}" @if($article->categories->find($categorie)) checked @endif>
+                            <label class="ml-2 text-white-700">{{$categorie->name}}</label>
+                        </div>
+                    @endforeach
+                </div>
 
                 <div class="p-6 text-gray-900 ">
                     <!-- Action sur le formulaire -->

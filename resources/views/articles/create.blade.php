@@ -8,7 +8,7 @@
     <form method="post" action="{{ route('articles.store') }}" class="py-12">
         @csrf
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white  overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 ">
                     <!-- Input de titre de l'article -->
                     <input type="text" name="title" id="title" placeholder="Titre de l'article" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
@@ -18,8 +18,20 @@
                     <!-- Contenu de l'article -->
                     <textarea rows="30" name="content" id="content" placeholder="Contenu de l'article" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
                 </div>
+                <div class="ml-6">
+                    <label class="block font-bold mb-2">Catégories :</label>
 
-                <div class="p-6 text-gray-900 dark:text-gray-100 flex items-center">
+                    @foreach($categories as $categorie)
+                        <div class="flex items-center mb-2">
+                            <input type="checkbox" name="categories[]" class="form-checkbox text-indigo-600 sm:rounded-lg" value="{{$categorie->id}}">
+                            <label class="ml-2 text-white-700">{{$categorie->name}}</label>
+                        </div>
+                    @endforeach
+                </div>
+
+
+
+                <div class="p-6 text-gray-900  flex items-center">
                     <!-- Action sur le formulaire -->
                     <div class="grow">
                         <input type="checkbox" name="draft" id="draft" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,7 +11,7 @@ class UserController extends Controller
 {
     public function create()
     {
-        return view('articles.create');
+        return view('articles.create', ["categories" => Category::all()]);
     }
     public function store(Request $request)
     {
@@ -33,7 +34,7 @@ class UserController extends Controller
         // $article->categories()->sync([1, 2, 3]);
 
         // Exemple pour ajouter des catégories à l'article en venant du formulaire
-        // $article->categories()->sync($request->input('categories'));
+         $article->categories()->sync($request->input('categories'));
 
         // On redirige l'utilisateur vers la liste des articles
         return redirect()->route('dashboard');
@@ -56,7 +57,7 @@ class UserController extends Controller
 
         // On retourne la vue avec l'article
         return view('articles.edit', [
-            'article' => $article
+            'article' => $article, 'categories' => Category::all()
         ]);
     }
 
@@ -75,6 +76,8 @@ class UserController extends Controller
 
         // On met à jour l'article
         $article->update($data);
+
+        $article->categories()->sync($request->input('categories'));
 
         // On redirige l'utilisateur vers la liste des articles (avec un flash)
         return redirect()->route('dashboard')->with('success', 'Article mis à jour !');

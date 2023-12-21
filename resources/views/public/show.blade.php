@@ -14,7 +14,19 @@
         <div class="p-6 text-gray-900 ">
             <p class="text-gray-700 ">{{ $article->content }}</p>
         </div>
+
+        @foreach ($article->categories as $categorie)
+
+            <span class="inline-block bg-gray-300 text-gray-700 px-2 py-1 rounded-full text-sm font-semibold mb-2">
+                {{$categorie->name}}
+            </span>
+
+        @endforeach
+
+
+
     </div>
+
     <div>
 
 
